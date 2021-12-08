@@ -1,7 +1,7 @@
 import React from 'react';
-const reactDom = require("react-dom");
 import {BrowserRouter as Router} from 'react-router-dom';
-import App from './components/App/App';
+import App from './components/App';
+const reactDom = require("react-dom");
 
 
 
