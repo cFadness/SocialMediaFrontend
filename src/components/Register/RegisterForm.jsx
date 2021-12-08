@@ -28,6 +28,23 @@ const RegisterForm = () => {
                 required={true}/>
 
                 <label>First Name</label>
+                <input
+                type='firstName'
+                name='firstName'
+                onChange={handleChange}
+                value={formValues.firstName}
+                required={true}/>
+
+                <label>Last Name</label>
+                <input
+                type='lastName'
+                name='lastName'
+                onChange={handleChange}
+                value={formValues.lastName}
+                required={true}/>
+
+                <button type="submit">Create Account</button>
+                
             </form>
         </div>
     )
