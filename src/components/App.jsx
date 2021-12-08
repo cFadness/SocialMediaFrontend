@@ -1,13 +1,17 @@
 
 import React, {Component} from "react";
-import { Switch, Route } from 'react-router-dom';
+// import { Switch, Route } from 'react-router-dom';
+import Register from "./Register/Register";
 // import DidNotFind from './DidNotFind/DidNotFind';
 
 
 class App extends Component {
     render(){
         return(
-            <h1>Hello</h1>
+            <div>
+                <h1>Hello</h1>
+                <Register />
+            </div>    
         )
     }
     // state = {}
