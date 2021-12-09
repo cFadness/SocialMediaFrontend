@@ -1,40 +1,34 @@
-import { useEffect, useState } from 'react';
-import React from 'react';
+import React, {Component} from 'react';
 import axios from 'axios';
 import RegisterForm from './RegisterForm';
 
-const useForm = (callback) => {
-    const [formValues, setFormValues] = useState({});
-
-    const handleChange = (event) => {
-        event.persist();
-        setFormValues({...formValues, [event.target.name]: event.target.value});
+class Register extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            
+        };
     }
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        callback();
+
+    registerNewAccount = async (inputObject) => {
+        try{
+            let newAccount = await axios.post('http://localhost:3000/api/users/register', inputObject)
+            console.log(newAccount)
+        }
+        catch(err){
+            console.log("Error creating new account", err)
+        }
     }
 
-    return { formValues, handleChange, handleSubmit }
+
+    render(){
+        return(
+           <div>
+               <RegisterForm registerNewAccount={this.registerNewAccount}/>
+           </div>
+        )
+    }
 }
 
-const Register = () => {
-    //make axios Post request for registering new user
-    useEffect(() => {
-        registerUser()
-    }, []);
-    async function registerUser() {
-
-        await axios.post('http://localhost:3000/api/users/register', formValues)
-      
-    }
-    return (
-        <div>
-            <RegisterForm/>
-        </div>
-    );
-}
- 
-
-export default { useForm, Register};
+export default Register;
