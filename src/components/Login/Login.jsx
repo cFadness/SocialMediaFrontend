@@ -17,7 +17,6 @@ class Login extends Component {
             console.log(response.data)
             localStorage.setItem('token', response.data.token);
             window.location = '/'
-            this.props.userLogin()
         }
         catch(err){
             console.log("Error logging in", err)

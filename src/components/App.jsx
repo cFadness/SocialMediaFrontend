@@ -6,7 +6,6 @@ import Login from './Login/Login';
 import Register from './Register/Register';
 import { Redirect } from 'react';
 import jwtDecode from 'jwt-decode';
-// import jwtDecode and Redirect
 
 
 class App extends Component {
@@ -14,7 +13,7 @@ class App extends Component {
         currentUser: {}
     }
 
-    userLogin = () => {
+    componentDidMount(){
         const jwt = localStorage.getItem('token');
         try{
             const user = jwtDecode(jwt);
@@ -33,22 +32,22 @@ class App extends Component {
 
                 <Routes>
                     {/* <Route path='/profile' render={props => {
-                        if (!user){
+                        if (!this.state.currentUser){
                             return <Redirect to='/login' />;
                         } else {
-                            return <Profile {...props} user={user} />
+                            return <Profile {...props} user={this.state.currentUser} />
                             }
                         }}
                     /> */}
 
                     <Route path='/register' component={Register} />
-                    <Route path='/login' component={Login} userLogin={this.userLogin} />
+                    <Route path='/login' component={Login} />
                     <Route path='/' exact component={Login} />
                     {/* <Route path='/profile' component={Profile} />
                     <Route path='/friends' component={Friends} />
                     <Route path='/myPost' component={MyPost} /> */}
                     <Route path='/didNotFind' component={DidNotFind} />
-                    <Redirect to='/didNotFind' />
+                    {/* <Redirect to='/didNotFind' /> */}
                 </Routes>
             </div>
         );
