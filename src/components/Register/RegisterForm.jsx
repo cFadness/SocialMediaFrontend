@@ -1,53 +1,54 @@
-import React from 'react';
-import useForm from './Register';
+import React, {Component} from 'react';
 
-const RegisterForm = () => {
-    const { formValues, handleChange, handleSubmit } = useForm(register);
+class RegisterForm extends Component{
 
-    function register() {
-        alert() //custom confirmation message upon registering
+    constructor(props){
+        super(props);
+        this.state={
+            firstName: "",
+            lastName: "",
+            email: "",
+            password: "",
+            isAdmin: false
+        }
     }
 
-    return(
-        <div>
-            <form onSubmit={handleSubmit}>
-                <label>Email</label>
-                <input
-                type='email'
-                name='email'
-                onChange={handleChange}
-                value={formValues.email}
-                required={true}/>
+    handleChange = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        });
+    }
 
-                <label>Password</label>
-                <input
-                type='password'
-                name='password'
-                onChange={handleChange}
-                value={formValues.password}
-                required={true}/>
+    handleSubmit = (event) => {
+        event.preventDefault();
+        this.props.registerNewAccount(this.state);
+    }
 
-                <label>First Name</label>
-                <input
-                type='firstName'
-                name='firstName'
-                onChange={handleChange}
-                value={formValues.firstName}
-                required={true}/>
-
-                <label>Last Name</label>
-                <input
-                type='lastName'
-                name='lastName'
-                onChange={handleChange}
-                value={formValues.lastName}
-                required={true}/>
-
-                <button type="submit">Create Account</button>
-                
+    render(){
+        return (
+            <form onSubmit={this.handleSubmit}>
+                <div>
+                    <label>First Name</label>
+                    <input name="firstName" onChange={this.handleChange} value={this.state.firstName}/>
+                </div>
+                <div>
+                    <label>Last Name</label>
+                    <input name="lastName" onChange={this.handleChange} value={this.state.lastName}/>
+                </div>
+                <div>
+                    <label>Email</label>
+                    <input name="email" onChange={this.handleChange} value={this.state.email}/>
+                </div>
+                <div>
+                    <label>Password</label>
+                    <input name="password" onChange={this.handleChange} value={this.state.password}/>
+                </div>
+                <div>
+                    <button type="submit" className="mt-3">Create Account</button>
+                </div>
             </form>
-        </div>
-    )
+        );
+    }
 }
 
 export default RegisterForm;
