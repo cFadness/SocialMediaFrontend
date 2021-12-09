@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import RegisterForm from './RegisterForm';
+import {Link} from 'react-router-dom';
 
 class Register extends Component {
     constructor(props){
@@ -26,6 +27,9 @@ class Register extends Component {
         return(
            <div>
                <RegisterForm registerNewAccount={this.registerNewAccount}/>
+               <Link to='/login'>
+                   <button>Already a user? Login Here</button>
+               </Link>
            </div>
         )
     }
