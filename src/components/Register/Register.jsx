@@ -24,17 +24,20 @@ const Register = () => {
     useEffect(() => {
         registerUser()
     }, []);
-    async function registerUser() {
-
-        await axios.post('http://localhost:3000/api/users/register', formValues)
-      
+        async function registerUser(formValues) {
+    
+            await axios.post('http://localhost:3000/api/users/register', formValues)
+        
+    
+            return (
+                <div>
+                    <RegisterForm/>
+                </div>
+            );
     }
-    return (
-        <div>
-            <RegisterForm/>
-        </div>
-    );
 }
  
 
 export default { useForm, Register};
+
+
