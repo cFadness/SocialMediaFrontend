@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import React from 'react';
 import axios from 'axios';
+import RegisterForm from './RegisterForm';
 
 const useForm = (callback) => {
     const [formValues, setFormValues] = useState({});
@@ -21,7 +22,7 @@ const useForm = (callback) => {
 const Register = () => {
     //make axios Post request for registering new user
     useEffect(() => {
-        registerUser
+        registerUser()
     }, []);
     async function registerUser() {
 
@@ -36,5 +37,4 @@ const Register = () => {
 }
  
 
-export default useForm
-export default Register
+export default { useForm, Register};
