@@ -63,6 +63,10 @@
     cursor: pointer;
 }
 
+.navbarLink:hover{
+    color: rgb(0, 255, 0);
+}
+
 .navbarIcons{
     display: flex;
 }
@@ -71,6 +75,10 @@
     margin-right: 15px;
     cursor: pointer;
     position: relative;
+}
+
+.navbarIconItem:hover{
+    color: rgb(0, 255, 0);
 }
 
 .navbarIconBadge{
