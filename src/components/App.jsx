@@ -5,6 +5,7 @@ import DidNotFind from './DidNotFind/DidNotFind';
 import Login from './Login/Login';
 import Register from './Register/Register';
 import jwtDecode from 'jwt-decode';
+import Navbar from './Navbar/Navbar';
 
 
 class App extends Component {
@@ -45,7 +46,7 @@ class App extends Component {
         console.log(this.state.currentUser)
         return(
             <div>
-                <h1>Our Social Media App</h1>
+                <Navbar user = {this.state.currentUser}/>
                 <Switch>
                     <Route path='/' exact render={props => {
                         if (!this.state.currentUser){

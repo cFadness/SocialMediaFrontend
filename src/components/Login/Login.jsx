@@ -11,6 +11,10 @@ class Login extends Component {
         };
     }
 
+    componentDidMount(){
+        localStorage.removeItem('token')
+    }
+
 
     loginAccount = async (inputObject) => {
         try{
