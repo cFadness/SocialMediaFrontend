@@ -12,23 +12,16 @@ class App extends Component {
 
     constructor(props){
         super(props);
-        const jwt = localStorage.getItem('token');
-        try{
-            const user = jwtDecode(jwt);
-            this.state = {
-                currentUser: user
-            }
-            
-        }
-        catch(err){
-            this.state = {
-                currentUser: null
-            }
+        this.state = {
+            currentUser: null,
+            wannaReRender: true
         }
 
     }
-
     componentDidMount(){
+       this.checkUser()
+    }
+    checkUser=()=>{
         const jwt = localStorage.getItem('token');
         try{
             const user = jwtDecode(jwt);
@@ -39,14 +32,16 @@ class App extends Component {
         }
         catch(err){
             console.log("Error decoding token", err);
+            this.setState({
+                currentUser: null
+            });
         }
     }
-
     render() {
         console.log(this.state.currentUser)
         return(
             <div>
-                <Navbar user = {this.state.currentUser}/>
+                <Navbar forceRerender={this.checkUser} user = {this.state.currentUser}/>
                 <Switch>
                     <Route path='/' exact render={props => {
                         if (!this.state.currentUser){

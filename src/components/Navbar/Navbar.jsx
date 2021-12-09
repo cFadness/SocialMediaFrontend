@@ -1,10 +1,16 @@
 // import { Search, Person, Chat, Notifications } from "@material-ui/icons";
-import React from "react";
+import React, { useEffect } from "react";
 import {Link} from 'react-router-dom';
 
 // import "./Navbar.css";
 
 const Navbar = (props) => {
+
+
+    const logout =()=>{
+        localStorage.removeItem('token')
+        props.forceRerender()
+    }
     return(
         <div>
             {props.user && <h4>Welcome {props.user.firstName}</h4>}
@@ -25,7 +31,7 @@ const Navbar = (props) => {
                 {props.user &&
                     <React.Fragment>
                         <li>
-                            <Link to='/login'>Logout</Link>
+                            <Link onClick={() =>logout()} to='/login'>Logout</Link>
                         </li>
                     </React.Fragment>
                 }
