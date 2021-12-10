@@ -47,9 +47,9 @@ class App extends Component {
                 <Switch>
                     <Route path='/' exact render={props => {
                         if (!this.state.currentUser){
-                            return <Redirect to='/register' />
+                            return <Redirect to='/register' /> //Problem: is rendering this route, before logging in
                         } else {
-                            return <h1>Profile</h1>
+                            return <Redirect to='/profile' />
                         }
                     }}
                     />
