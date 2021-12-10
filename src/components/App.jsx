@@ -57,7 +57,7 @@ class App extends Component {
                     <Route path='/register' component={Register} />
                     <Route path='/login' component={Login} />
                     <Route path='/' exact component={Login} />
-                    <Route path='/profile' render={props => <Profile {...this.state.currentUser}} />
+                    <Route path='/profile' component={() => <Profile user={this.state.currentUser}/>} />
                     <Route path='/friends' component={Friends} />
                     <Route path='/didNotFind' component={DidNotFind} />
                     <Redirect to='/didNotFind' />

@@ -5,8 +5,8 @@ class Profile extends Component {
     constructor(props){
         super(props);
         this.state = {
-            photos: this.props.user.photos[0],
-            about: this.props.user.about,
+            photos: this.props.user.photos,
+            about: this.props.user.about
         };
     }
     render(){
