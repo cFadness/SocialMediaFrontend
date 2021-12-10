@@ -6,6 +6,7 @@ import Login from './Login/Login';
 import Register from './Register/Register';
 import jwtDecode from 'jwt-decode';
 import Navbar from './Navbar/Navbar';
+import Friends from './Friends/Friends';
 
 
 class App extends Component {
@@ -54,12 +55,12 @@ class App extends Component {
 
                     <Route path='/register' component={Register} />
                     <Route path='/login' component={Login} />
-                    {/* <Route path='/' exact component={Login} /> */}
-                    {/* <Route path='/profile' component={Profile} />
+                    <Route path='/' exact component={Login} />
+                    {/* <Route path='/profile' component={Profile} /> */}
                     <Route path='/friends' component={Friends} />
-                    <Route path='/myPost' component={MyPost} />
+                    {/* <Route path='/myPost' component={MyPost} /> */}
                     <Route path='/didNotFind' component={DidNotFind} />
-                    <Redirect to='/didNotFind' /> */}
+                    <Redirect to='/didNotFind' />
                 </Switch>
             </div>
         );

@@ -13,11 +13,7 @@ const Navbar = (props) => {
     }
     return(
         <div>
-            {props.user && <h4>Welcome {props.user.firstName}</h4>}
             <ul>
-                <li>
-                    <Link to='/profile'>Profile</Link>
-                </li>
                 {!props.user &&
                     <React.Fragment>
                         <li>
@@ -30,8 +26,11 @@ const Navbar = (props) => {
                 }
                 {props.user &&
                     <React.Fragment>
+                        <h4>Welcome {props.user.firstName}</h4>
                         <li>
                             <Link onClick={() =>logout()} to='/login'>Logout</Link>
+                            <Link to='/profile'>Profile</Link>
+                            <Link to='/friends'>Friends</Link>
                         </li>
                     </React.Fragment>
                 }
