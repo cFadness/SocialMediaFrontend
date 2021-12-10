@@ -7,7 +7,7 @@ import Register from './Register/Register';
 import jwtDecode from 'jwt-decode';
 import Navbar from './Navbar/Navbar';
 import Friends from './Friends/Friends';
-import MyPosts from './Profile/MyPosts';
+import Profile from './Profile/Profile';
 
 
 class App extends Component {
@@ -57,9 +57,8 @@ class App extends Component {
                     <Route path='/register' component={Register} />
                     <Route path='/login' component={Login} />
                     <Route path='/' exact component={Login} />
-                    {/* <Route path='/profile' component={Profile} /> */}
+                    <Route path='/profile' render={props => <Profile {...this.state.currentUser}} />
                     <Route path='/friends' component={Friends} />
-                    <Route path='/myPost' component={MyPosts} user={this.state.currentUser}/>
                     <Route path='/didNotFind' component={DidNotFind} />
                     <Redirect to='/didNotFind' />
                 </Switch>

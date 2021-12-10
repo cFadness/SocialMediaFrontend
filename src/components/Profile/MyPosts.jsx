@@ -13,10 +13,10 @@ class MyPosts extends Component {
         this.getMyPosts();
     }
 
-    getMyPosts = async (props) => {
+    getMyPosts = async () => {
         try{
             const jwt = localStorage.getItem('token');
-            const response = await axios.get(`http://localhost:3000/api/posts/${props.user._id}`, {headers: {'x-auth-token': jwt}});
+            const response = await axios.get(`http://localhost:3000/api/posts/${this.props.user._id}`, {headers: {'x-auth-token': jwt}});
             console.log(response.data)
             this.displayMyPosts(response.data)
         }
