@@ -39,21 +39,21 @@ class Profile extends Component {
    }   
 
    displayInbox = () => {
-    this.state.inbox.map((element) => {
+    this.state.inbox.map((friend) => {
         return(
             <li>
-                <h5>{element.firstName} would like to be your friend</h5>
-                {element.photos}
-                {element.firstName}
-                {element.lastName}
-                <button onClick={}>Accept</button>
-                <button onClick={}>Deny</button>
+                <h5>{friend.firstName} would like to be your friend</h5>
+                {friend.photos}
+                {friend.firstName}
+                {friend.lastName}
+                <button onClick={this.acceptFriendRequest(friend)}>Accept</button>
+                <button onClick={this.denyFriendRequest(friend)}>Deny</button>
             </li>
         )
     })
     }
 
-    findFriends = (input) => {
+    findFriends = async (input) => {
         try{
             const response = await axios.get(`http://localhost:3000/api/users`);
             console.log(response.data)
@@ -72,7 +72,7 @@ class Profile extends Component {
                             {user.photos}
                             {user.firstName}
                             {user.lastName}
-                            <button onClick={this.xyz(user._id)}>Add Friend</button>
+                            <button onClick={() => this.sendFriendRequest(user._id)}>Add Friend</button>
                         </li>
                     </div>
                 )
@@ -86,12 +86,57 @@ class Profile extends Component {
         }
     }
 
-    xyz = async (theUserId) => {
+    sendFriendRequest = async (theUserId) => {
         try{
-            const response = await axios.put(`http://localhost:3000/api/users/${theUserId}`);
+            const jwt = localStorage.getItem('token');
+            const response = await axios.put(`http://localhost:3000/api/users/${theUserId}`, {headers: {'x-auth-token': jwt}});
             console.log(response.data)
+            this.setState({
+                inbox: response.data.inbox
+            })
+        }
+        catch(err){
+            console.log("Error making PUT request", err)
+        }
+    }
+
+    acceptFriendRequest = async (friend) => {
+            try{
+                const jwt = localStorage.getItem('token');
+                const response = await axios.get('http://localhost:3000/api/users/friends', {headers: {'x-auth-token': jwt}});
+                response.data.push(friend)
+            }
+            catch(err){
+                console.log("Error getting friends list", err)
+            }
+            this.denyFriendRequest()
+    }
 
 
+    denyFriendRequest = (friend) => {
+       let newInbox = this.state.inbox.filter((friendRequest) => {
+            if(friendRequest._id !== friend._id){
+                return true
+            }
+            else{
+                return false
+            }
+        })
+        this.setState({
+            inbox: newInbox
+        })
+        this.setInbox()
+        
+    }
+
+    setInbox = async () => {
+        try{
+            const jwt = localStorage.getItem('token');
+            const response = await axios.put(`http://localhost:3000/api/users`, {headers: {'x-auth-token': jwt}},
+            {
+                inbox: this.state.inbox
+            });
+            console.log(response.data)
         }
         catch(err){
             console.log("Error making PUT request", err)
