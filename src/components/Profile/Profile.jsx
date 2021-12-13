@@ -11,7 +11,7 @@ class Profile extends Component {
             about: "",
             inbox: [],
             possibleFriends: []
-        };
+        }
     }
 
     componentDidMount(){
